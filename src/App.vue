@@ -30,7 +30,7 @@ const cambiarFavorito = (title) => {
             :title="post.title"
             :id="post.id"
             :body="post.body"
-            @cambiarFavoritoEmit="cambiarFavorito"
+            @cambiarFavoritoNombre="cambiarFavorito"
             >
         </BlogPost>
     </div>

@@ -9,6 +9,11 @@ defineProps({
         default: "Sin descripción"
     }
 })
+
+const emit = defineEmits(['cambiarFavoritoNombre'])
+
+// defineEmits(['cambiarFavoritoNombre'])
+
 </script>
 
 <template>
@@ -18,7 +23,7 @@ defineProps({
                 {{ id }} - {{ title }}
             </h5>
             <p>{{ body }}</p>
-            <button @click="$emit('cambiarFavoritoEmit', title)" class="btn btn-outline-primary">Favorito</button>
+            <button @click="emit('cambiarFavoritoNombre', title)" class="btn btn-outline-primary">Favorito</button>
         </div>
     </div>
 </template>
