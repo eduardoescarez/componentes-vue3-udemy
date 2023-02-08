@@ -18,6 +18,7 @@ defineProps({
                 {{ id }} - {{ title }}
             </h5>
             <p>{{ body }}</p>
+            <button @click="$emit('cambiarFavoritoEmit', title)" class="btn btn-outline-primary">Favorito</button>
         </div>
     </div>
 </template>
