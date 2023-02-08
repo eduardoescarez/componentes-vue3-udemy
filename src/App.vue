@@ -4,6 +4,9 @@
 
 
 <template>
-    <h1>APP</h1>
-    <ButtonCounter />
+    <div class="container">
+        <h1>APP</h1>
+        <ButtonCounter> </ButtonCounter>
+        <button-counter> </button-counter>
+    </div>
 </template>
