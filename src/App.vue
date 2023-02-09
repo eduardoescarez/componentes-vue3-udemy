@@ -37,10 +37,9 @@ fetch("https://jsonplaceholder.typicode.com/posts")
         <h1>APP</h1>
         <h2>Mi post favorito: {{ favorito }}</h2>
 
-        <button @click="atras">Atrás provisorio</button>
-        <button @click="siguiente">Siguiente provisorio</button>
 
-        <ButtonGroup class="mb-2"/>
+        <ButtonGroup @siguiente="siguiente" @atras="atras" class="mb-2"/>
+
         <BlogPost
             v-for="post in posts.slice(inicio, fin)"
             :key="post.id"
