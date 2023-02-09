@@ -4,6 +4,9 @@ import BlogPost from "./components/BlogPost.vue"
 import ButtonGroup from "./components/ButtonGroup.vue"
 
 const posts = ref([])
+const postxpagina = 10
+const inicio = ref(0)
+const fin = ref(postxpagina)
 
 const favorito = ref("")
 
@@ -24,7 +27,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
         <h2>Mi post favorito: {{ favorito }}</h2>
         <ButtonGroup class="mb-2"/>
         <BlogPost
-            v-for="post in posts.slice(0, 10)"
+            v-for="post in posts.slice(inicio, fin)"
             :key="post.id"
             :title="post.title"
             :id="post.id"
