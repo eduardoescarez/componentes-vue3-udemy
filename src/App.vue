@@ -1,39 +1,51 @@
 <script setup>
-import { ref, computed } from "vue";
-import BlogPost from "./components/BlogPost.vue"
-import ButtonGroup from "./components/ButtonGroup.vue"
-import LoadingSpinner from "./components/LoadingSpinner.vue"
+import { ref, computed, onMounted } from "vue";
+import BlogPost from "./components/BlogPost.vue";
+import ButtonGroup from "./components/ButtonGroup.vue";
+import LoadingSpinner from "./components/LoadingSpinner.vue";
 
-const posts = ref([])
-const postxpagina = ref(10)
-const inicio = ref(0)
-const fin = ref(postxpagina.value)
-const loading = ref(true)
+const posts = ref([]);
+const postxpagina = ref(10);
+const inicio = ref(0);
+const fin = ref(postxpagina.value);
+const loading = ref(true);
 
-const favorito = ref("")
+const favorito = ref("");
 
 const cambiarFavorito = (title) => {
-    favorito.value = title
-}
+    favorito.value = title;
+};
 
 const siguiente = () => {
-    inicio.value += postxpagina.value
-    fin.value += postxpagina.value
-}
+    inicio.value += postxpagina.value;
+    fin.value += postxpagina.value;
+};
 
 const atras = () => {
-    inicio.value -= postxpagina.value
-    fin.value -= postxpagina.value
-}
+    inicio.value -= postxpagina.value;
+    fin.value -= postxpagina.value;
+};
 
+onMounted(async() => {
+    try {
+        const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+        posts.value = await res.json();
+    }
+    catch(error){
+        console.log(error)
+    }
+    finally{
+        loading.value = false;
+    }
+});
 
-fetch("https://jsonplaceholder.typicode.com/posts")
-    .then(res => res.json())
-    .then(data => {posts.value = data})
-    .catch((e) => console.log(e))
-    .finally(() => (loading.value = false))
+// fetch("https://jsonplaceholder.typicode.com/posts");
+//    .then(res => res.json());
+//    .then(data => {posts.value = data});
+//    .catch((e) => console.log(e));
+//    .finally(() => (loading.value = false));
 
-const cantidadEntradas = computed(() => posts.value.length)
+const cantidadEntradas = computed(() => posts.value.length);
 
 </script>
 
