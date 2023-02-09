@@ -4,15 +4,26 @@ import BlogPost from "./components/BlogPost.vue"
 import ButtonGroup from "./components/ButtonGroup.vue"
 
 const posts = ref([])
-const postxpagina = 10
+const postxpagina = ref(10)
 const inicio = ref(0)
-const fin = ref(postxpagina)
+const fin = ref(postxpagina.value)
 
 const favorito = ref("")
 
 const cambiarFavorito = (title) => {
     favorito.value = title
 }
+
+const siguiente = () => {
+    inicio.value += postxpagina.value
+    fin.value += postxpagina.value
+}
+
+const atras = () => {
+    inicio.value -= postxpagina.value
+    fin.value -= postxpagina.value
+}
+
 
 fetch("https://jsonplaceholder.typicode.com/posts")
     .then(res => res.json())
@@ -25,6 +36,10 @@ fetch("https://jsonplaceholder.typicode.com/posts")
     <div class="container">
         <h1>APP</h1>
         <h2>Mi post favorito: {{ favorito }}</h2>
+
+        <button @click="atras">Atrás provisorio</button>
+        <button @click="siguiente">Siguiente provisorio</button>
+
         <ButtonGroup class="mb-2"/>
         <BlogPost
             v-for="post in posts.slice(inicio, fin)"
