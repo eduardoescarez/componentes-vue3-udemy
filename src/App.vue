@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import ButtonCounter from "./components/ButtonCounter.vue"
 import BlogPost from "./components/BlogPost.vue"
+import ButtonGroup from "./components/ButtonGroup.vue"
 
 const posts = ref([])
 
@@ -22,7 +22,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
     <div class="container">
         <h1>APP</h1>
         <h2>Mi post favorito: {{ favorito }}</h2>
-        <ButtonCounter/>
+        <ButtonGroup class="mb-2"/>
         <BlogPost
             v-for="post in posts"
             :key="post.id"
@@ -30,6 +30,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
             :id="post.id"
             :body="post.body"
             @cambiarFavoritoNombre="cambiarFavorito"
+            class="mb-2"
             >
         </BlogPost>
     </div>
