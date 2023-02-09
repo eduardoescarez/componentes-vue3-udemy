@@ -38,7 +38,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
         <h2>Mi post favorito: {{ favorito }}</h2>
 
 
-        <ButtonGroup @siguiente="siguiente" @atras="atras" class="mb-2"/>
+        <ButtonGroup @siguiente="siguiente" @atras="atras" :inicio="inicio" :fin="fin" class="mb-2"/>
 
         <BlogPost
             v-for="post in posts.slice(inicio, fin)"
