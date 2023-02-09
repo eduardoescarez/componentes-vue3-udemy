@@ -24,7 +24,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
         <h2>Mi post favorito: {{ favorito }}</h2>
         <ButtonGroup class="mb-2"/>
         <BlogPost
-            v-for="post in posts"
+            v-for="post in posts.slice(0, 10)"
             :key="post.id"
             :title="post.title"
             :id="post.id"
