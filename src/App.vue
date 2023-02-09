@@ -8,7 +8,7 @@ const posts = ref([])
 const postxpagina = ref(10)
 const inicio = ref(0)
 const fin = ref(postxpagina.value)
-const loading = ref(false)
+const loading = ref(true)
 
 const favorito = ref("")
 
@@ -30,6 +30,8 @@ const atras = () => {
 fetch("https://jsonplaceholder.typicode.com/posts")
     .then(res => res.json())
     .then(data => {posts.value = data})
+    .catch((e) => console.log(e))
+    .finally(() => (loading.value = false))
 
 const cantidadEntradas = computed(() => posts.value.length)
 
