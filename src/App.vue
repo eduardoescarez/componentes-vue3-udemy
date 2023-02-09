@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import BlogPost from "./components/BlogPost.vue"
 import ButtonGroup from "./components/ButtonGroup.vue"
 
@@ -29,6 +29,8 @@ fetch("https://jsonplaceholder.typicode.com/posts")
     .then(res => res.json())
     .then(data => {posts.value = data})
 
+const cantidadEntradas = computed(() => posts.value.length)
+
 </script>
 
 
@@ -38,7 +40,7 @@ fetch("https://jsonplaceholder.typicode.com/posts")
         <h2>Mi post favorito: {{ favorito }}</h2>
 
 
-        <ButtonGroup @siguiente="siguiente" @atras="atras" :inicio="inicio" :fin="fin" class="mb-2"/>
+        <ButtonGroup @siguiente="siguiente" @atras="atras" :inicio="inicio" :fin="fin" :cantidadElementos="cantidadEntradas" class="mb-2"/>
 
         <BlogPost
             v-for="post in posts.slice(inicio, fin)"
