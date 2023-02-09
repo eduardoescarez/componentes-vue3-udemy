@@ -2,11 +2,13 @@
 import { ref, computed } from "vue";
 import BlogPost from "./components/BlogPost.vue"
 import ButtonGroup from "./components/ButtonGroup.vue"
+import LoadingSpinner from "./components/LoadingSpinner.vue"
 
 const posts = ref([])
 const postxpagina = ref(10)
 const inicio = ref(0)
 const fin = ref(postxpagina.value)
+const loading = ref(false)
 
 const favorito = ref("")
 
@@ -35,7 +37,8 @@ const cantidadEntradas = computed(() => posts.value.length)
 
 
 <template>
-    <div class="container">
+    <LoadingSpinner v-if="loading"/>
+    <div class="container" v-else>
         <h1>APP</h1>
         <h2>Mi post favorito: {{ favorito }}</h2>
 
